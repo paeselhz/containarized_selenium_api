@@ -11,7 +11,7 @@ name: ci
 # as well as remove branches from triggering GH Actions:
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     tags: [ '*.*.*' ]
 
 # Below there is the job configuration to build the image
