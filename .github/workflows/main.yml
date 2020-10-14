@@ -12,6 +12,7 @@ name: ci
 on:
   push:
     branches: [ master ]
+    tags: [ '*.*.*' ]
 
 # Below there is the job configuration to build the image
 # and push it to a DockerHub repository
