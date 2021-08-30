@@ -23,7 +23,8 @@ RUN mkdir /app \
         libxdamage1 \
         libxfixes3 \
         libxrandr2 \
-        xdg-utils
+        xdg-utils \
+        libgdk-pixbuf2.0-0
 
 WORKDIR /app
 
@@ -36,8 +37,8 @@ COPY applications/chromedriver /app/applications/
 RUN pip install --upgrade pip \
     && pip install -r requirements.txt --upgrade \
     && dpkg -i applications/google_chrome_86_0_4240_75.deb \
-    && chmod +x applications/chromedriver
+    && chmod a+x applications/chromedriver
 
-COPY . /app/
+COPY api/ /app/api/
 
 ENTRYPOINT ["gunicorn", "--bind=0.0.0.0:8080", "--workers=3", "--worker-class=uvicorn.workers.UvicornWorker", "api.main:app"]
