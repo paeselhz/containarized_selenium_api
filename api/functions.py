@@ -10,12 +10,14 @@ def return_population_by_country(selenium_driver,
 
     soup = BeautifulSoup(html_source, "html.parser")
 
-    table_raw_html = soup.select_one("#main")
+    table_raw_html = soup.select_one("#mw-content-text > div.mw-parser-output > table")
 
     full_table = pd.read_html(str(table_raw_html))[0].rename(columns={"Country/Territory": "country",
                                                                       "UN continentalregion[4]": "continent",
+                                                                      "UN statisticalsubregion[4]": "statistical_subregion",
                                                                       "Population(1 July 2018)": "population_2018",
-                                                                      "Population(1 July 2019)": "population_2019"})
+                                                                      "Population(1 July 2019)": "population_2019",
+                                                                      "Change": "change"})
 
     if continent is None:
         return_df = full_table[["country", "continent", "population_2018", "population_2019"]]
