@@ -12,7 +12,7 @@ def return_population_by_country(selenium_driver,
 
     table_raw_html = soup.select_one("#mw-content-text > div.mw-parser-output > table")
 
-    full_table = pd.read_html(str(table_raw_html))[0].rename(columns={"Country/Territory": "country",
+    full_table = pd.read_html(str(table_raw_html))[0].rename(columns={"Country/Area": "country",
                                                                       "UN continentalregion[4]": "continent",
                                                                       "UN statisticalsubregion[4]": "statistical_subregion",
                                                                       "Population(1 July 2018)": "population_2018",
