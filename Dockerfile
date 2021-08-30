@@ -39,6 +39,6 @@ RUN pip install --upgrade pip \
     && dpkg -i applications/google_chrome_86_0_4240_75.deb \
     && chmod a+x applications/chromedriver
 
-COPY . /app/
+COPY api/ /app/api/
 
 ENTRYPOINT ["gunicorn", "--bind=0.0.0.0:8080", "--workers=3", "--worker-class=uvicorn.workers.UvicornWorker", "api.main:app"]
